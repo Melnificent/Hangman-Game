@@ -9,13 +9,19 @@ life = 6
 while life < 10:
     guess = input("Guess the right letter: ")
     if guess in word:
-        print("Wow! You got it right!")
-        letters.append(guess)
-        if len(letters) == len(word):
+        if guess in letters:
+            print("You already guessed that!")
+        else:
+            print("Wow! You got it right!")
+            letters.append(guess)
+            letters_left = 0
+            for char in word:
+                if char not in letters:
+                    letters_left +=1
+        if letters_left == 0:
             print("Congratulations! You won :)")
             break
         else:
-            letters_left = len(word) - len(letters)
             print(f"You have {letters_left} letters left.")
     else:
         life -= 1
